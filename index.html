@@ -773,16 +773,16 @@ function login(){
 
 
     if(
-        username === ADMIN_USERNAME &&
-        password === ADMIN_PASSWORD
-    ){
+    username === "admin" &&
+    password === "admin123"
+){
 
-        showAdmin();
+    showAdmin();
 
-        error.style.display="none";
+    error.style.display="none";
 
-        return;
-    }
+    return;
+}
 
 
     error.style.display="block";
