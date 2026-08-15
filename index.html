@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>نظام النتائج</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    background:#eeeeee;
+    font-family:Tahoma,Arial,sans-serif;
+    color:#111;
+}
+
+/* LOGIN */
+
+.login-page{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.login-box{
+    width:100%;
+    max-width:420px;
+    background:white;
+    padding:30px 25px;
+    border-radius:15px;
+    box-shadow:0 5px 25px rgba(0,0,0,.15);
+    text-align:center;
+}
+
+.login-box h1{
+    margin:0 0 10px;
+    color:#333;
+}
+
+.login-box p{
+    color:#777;
+    margin-bottom:25px;
+}
+
+.input{
+    width:100%;
+    padding:14px;
+    margin-bottom:15px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+    text-align:right;
+}
+
+.login-button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    background:#333;
+    color:white;
+    font-size:17px;
+    cursor:pointer;
+}
+
+.error{
+    color:#d00;
+    margin-top:15px;
+    display:none;
+}
+
+/* RESULT */
+
+.result-page{
+    display:none;
+    padding:20px 10px;
+}
+
+.result-container{
+    max-width:1100px;
+    margin:auto;
+    background:white;
+    box-shadow:0 2px 10px rgba(0,0,0,.15);
+}
+
+.student-info{
+    padding:18px;
+    border-bottom:1px solid #bbb;
+    background:#f5f5f5;
+}
+
+.student-info table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.student-info td{
+    border:1px solid #aaa;
+    padding:10px;
+    font-size:15px;
+}
+
+.student-info td:first-child,
+.student-info td:nth-child(3){
+    font-weight:bold;
+    background:#e5e5e5;
+}
+
+.semester-title{
+    background:#ff6b5b;
+    color:#111;
+    font-weight:bold;
+    text-align:center;
+    padding:10px;
+    border-top:1px solid #999;
+    border-bottom:1px solid #999;
+}
+
+.results-table{
+    width:100%;
+    border-collapse:collapse;
+    text-align:center;
+}
+
+.results-table th,
+.results-table td{
+    border:1px solid #aaa;
+    padding:8px 6px;
+    font-size:13px;
+}
+
+.results-table th{
+    background:#d9d9d9;
+}
+
+.results-table td.subject{
+    text-align:right;
+    font-weight:500;
+}
+
+.total-row{
+    background:#d8d0d0;
+    font-weight:bold;
+}
+
+.good{
+    background:#fff59d;
+}
+
+.footer-note{
+    text-align:center;
+    color:#e33;
+    font-weight:bold;
+    padding:15px;
+    font-size:15px;
+}
+
+.logout{
+    display:block;
+    margin:20px auto;
+    padding:12px 30px;
+    border:none;
+    border-radius:7px;
+    background:#333;
+    color:white;
+    font-size:15px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    .result-page{
+        padding:5px;
+    }
+
+    .student-info td{
+        font-size:12px;
+        padding:7px 4px;
+    }
+
+    .results-table th,
+    .results-table td{
+        font-size:10px;
+        padding:6px 3px;
+    }
+
+    .semester-title{
+        font-size:12px;
+    }
+
+    .footer-note{
+        font-size:12px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- LOGIN PAGE -->
+
+<div class="login-page" id="loginPage">
+
+    <div class="login-box">
+
+        <h1>نظام النتائج</h1>
+
+        <p>يرجى إدخال بيانات الطالب</p>
+
+        <input
+            type="text"
+            id="username"
+            class="input"
+            placeholder="اسم المستخدم">
+
+        <input
+            type="password"
+            id="password"
+            class="input"
+            placeholder="رقم الجلوس / كلمة المرور">
+
+        <button
+            class="login-button"
+            onclick="login()">
+            عرض النتيجة
+        </button>
+
+        <div class="error" id="error">
+            بيانات الدخول غير صحيحة
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- RESULT PAGE -->
+
+<div class="result-page" id="resultPage">
+
+<div class="result-container">
+
+
+    <!-- STUDENT INFORMATION -->
+
+    <div class="student-info">
+
+        <table>
+
+            <tr>
+
+                <td>اسم الطالب</td>
+
+                <td id="studentName">
+                    أحمد محمد
+                </td>
+
+                <td>رقم الجلوس</td>
+
+                <td id="seatNumber">
+                    123456
+                </td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+
+
+    <!-- YEAR 2022 / 2023 -->
+
+    <div class="semester-title">
+        الفرقة الثانية 2022/2023 - طب وجراحة الفم والأسنان
+    </div>
+
+    <table class="results-table">
+
+        <thead>
+
+            <tr>
+
+                <th>المادة</th>
+                <th>الدرجة</th>
+                <th>الدرجة العظمى</th>
+                <th>التقدير</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td class="subject">الإمتحان</td>
+                <td>107</td>
+                <td>150</td>
+                <td>(جيد)</td>
+            </tr>
+
+            <tr>
+                <td class="subject">المواد الحيوية لطب الأسنان</td>
+                <td>94</td>
+                <td>150</td>
+                <td>(جيد)</td>
+            </tr>
+
+            <tr>
+                <td class="subject">أمراض الفم وجراحة وتشخيصية</td>
+                <td>111.75</td>
+                <td>150</td>
+                <td>(جيد)</td>
+            </tr>
+
+            <tr>
+                <td class="subject">باثولوجيا عامة</td>
+                <td>110</td>
+                <td>150</td>
+                <td>(جيد)</td>
+            </tr>
+
+            <tr>
+                <td class="subject">باثولوجيا الفم والأسنان</td>
+                <td>99.25</td>
+                <td>150</td>
+                <td>(جيد)</td>
+            </tr>
+
+            <tr>
+                <td class="subject">ريادة الأعمال</td>
+                <td>35</td>
+                <td>50</td>
+                <td>ناجح</td>
+            </tr>
+
+            <tr>
+                <td class="subject">ميكروبيولوجي</td>
+                <td>76.5</td>
+                <td>100</td>
+                <td>جيد جداً</td>
+            </tr>
+
+            <tr class="total-row">
+
+                <td>المجموع الكلي</td>
+                <td>598.5</td>
+                <td colspan="2">التقدير العام: ج</td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+
+
+    <!-- YEAR 2023 / 2024 -->
+
+    <div class="semester-title">
+        الفرقة الثالثة 2023/2024 - طب وجراحة الفم والأسنان
+    </div>
+
+    <table class="results-table">
+
+        <tbody>
+
+            <tr>
+                <td class="subject">العلاج الفم والوجه والفكين</td>
+                <td>47.73</td>
+                <td>100</td>
+                <td>ضعيف</td>
+            </tr>
+
+            <tr>
+                <td class="subject">الجراحة العامة للفم والأسنان وجراحة بورد</td>
+                <td>80</td>
+                <td>100</td>
+                <td>جيد جداً</td>
+            </tr>
+
+            <tr>
+                <td class="subject">باثولوجيا الفم والوجه والفكين</td>
+                <td>168.5</td>
+                <td>250</td>
+                <td>(جيد)</td>
+            </tr>
+
+            <tr>
+                <td class="subject">تكنولوجيا الاستعاضات السنية المثبتة</td>
+                <td>78.5</td>
+                <td>150</td>
+                <td>ضعيف</td>
+            </tr>
+
+            <tr>
+                <td class="subject">تكنولوجيا الاستعاضة الصناعية لطب الأسنان</td>
+                <td>139.28</td>
+                <td>200</td>
+                <td>(جيد)</td>
+            </tr>
+
+            <tr>
+                <td class="subject">تكنولوجيا العلاج التحفظي</td>
+                <td>113.32</td>
+                <td>150</td>
+                <td>جيد جداً</td>
+            </tr>
+
+            <tr>
+                <td class="subject">مقرر تنمية مهارات II</td>
+                <td>25</td>
+                <td>50</td>
+                <td>ناجح</td>
+            </tr>
+
+            <tr>
+                <td class="subject">مقرر مكافحة عدوى</td>
+                <td>47</td>
+                <td>50</td>
+                <td>ممتاز</td>
+            </tr>
+
+            <tr class="total-row">
+
+                <td>المجموع الكلي</td>
+                <td>674.33</td>
+                <td colspan="2">التقدير العام: ج</td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+
+
+    <!-- YEAR 2024 / 2025 -->
+
+    <div class="semester-title">
+        الفرقة الرابعة 2024/2025 - طب وجراحة الفم والأسنان
+    </div>
+
+    <table class="results-table">
+
+        <tbody>
+
+            <tr>
+                <td class="subject">العلاج الفم والوجه والفكين</td>
+                <td>63.75</td>
+                <td>100</td>
+                <td>مقبول</td>
+            </tr>
+
+            <tr>
+                <td class="subject">الاستعاضة السنية المثبتة</td>
+                <td>100</td>
+                <td>150</td>
+                <td>(جيد)</td>
+            </tr>
+
+            <tr class="good">
+                <td class="subject">الاستعاضة الصناعية لطب الأسنان</td>
+                <td>108.5</td>
+                <td>150</td>
+                <td>(جيد)</td>
+            </tr>
+
+            <tr>
+                <td class="subject">العلاج التحفظي</td>
+                <td>65</td>
+                <td>100</td>
+                <td>(جيد)</td>
+            </tr>
+
+            <tr>
+                <td class="subject">أمراض اللثة</td>
+                <td>65</td>
+                <td>100</td>
+                <td>(جيد)</td>
+            </tr>
+
+            <tr>
+                <td class="subject">تقويم الأسنان</td>
+                <td>60</td>
+                <td>100</td>
+                <td>مقبول</td>
+            </tr>
+
+            <tr>
+                <td class="subject">جراحة الفم والوجه والفكين</td>
+                <td>90</td>
+                <td>150</td>
+                <td>مقبول</td>
+            </tr>
+
+            <tr>
+                <td class="subject">طب الفم والتشخيص</td>
+                <td>93.75</td>
+                <td>150</td>
+                <td>مقبول</td>
+            </tr>
+
+            <tr>
+                <td class="subject">علاج الجذور</td>
+                <td>66</td>
+                <td>100</td>
+                <td>(جيد)</td>
+            </tr>
+
+            <tr class="total-row">
+
+                <td>المجموع الكلي</td>
+                <td>712</td>
+                <td colspan="2">التقدير العام: ل</td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+
+    <div class="footer-note">
+        هذه الصفحة مجرد عرض للنتيجة ولا يعمل بها كشهادة رسمية
+    </div>
+
+
+    <button class="logout" onclick="logout()">
+        تسجيل الخروج
+    </button>
+
+
+</div>
+
+</div>
+
+
+
+<script>
+
+/* بيانات الدخول */
+
+const student = {
+
+    username: "ahmed",
+
+    password: "123456",
+
+    name: "أحمد محمد",
+
+    seat: "123456"
+
+};
+
+
+/* تسجيل الدخول */
+
+function login(){
+
+    const username =
+        document.getElementById("username").value.trim();
+
+    const password =
+        document.getElementById("password").value.trim();
+
+    const error =
+        document.getElementById("error");
+
+
+    if(
+        username === student.username &&
+        password === student.password
+    ){
+
+        document.getElementById("loginPage").style.display="none";
+
+        document.getElementById("resultPage").style.display="block";
+
+        document.getElementById("studentName").textContent =
+            student.name;
+
+        document.getElementById("seatNumber").textContent =
+            student.seat;
+
+        error.style.display="none";
+
+    }else{
+
+        error.style.display="block";
+
+    }
+
+}
+
+
+/* تسجيل الخروج */
+
+function logout(){
+
+    document.getElementById("resultPage").style.display="none";
+
+    document.getElementById("loginPage").style.display="flex";
+
+    document.getElementById("username").value="";
+
+    document.getElementById("password").value="";
+
+}
+
+</script>
+
+
+</body>
+</html>
