@@ -16,11 +16,17 @@
     box-sizing:border-box;
 }
 
+html,
 body{
     margin:0;
-    background:#eee;
+    padding:0;
+    background:#eeeeee;
     font-family:Tahoma,Arial,sans-serif;
     color:#111;
+}
+
+body{
+    min-height:100vh;
 }
 
 .hidden{
@@ -28,14 +34,16 @@ body{
 }
 
 
-/* ================= LOGIN ================= */
+/* =====================================================
+   LOGIN
+===================================================== */
 
 .login{
     min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    background:#eee;
+    background:#eeeeee;
 }
 
 .login-box{
@@ -43,24 +51,26 @@ body{
     max-width:400px;
     background:#fff;
     padding:30px;
-    border-radius:10px;
-    box-shadow:0 5px 20px #aaa;
+    border-radius:8px;
+    box-shadow:0 5px 20px rgba(0,0,0,.25);
     text-align:center;
 }
 
 .login-box h1{
     margin:0 0 25px;
     color:#1d4ed8;
+    font-size:26px;
 }
 
 .login-box input{
     width:100%;
     padding:13px;
     margin:7px 0;
-    border:1px solid #ccc;
+    border:1px solid #bbb;
     font-size:16px;
     direction:ltr;
     text-align:left;
+    border-radius:3px;
 }
 
 .login-box button{
@@ -75,20 +85,28 @@ body{
     border-radius:4px;
 }
 
+.login-box button:active{
+    transform:scale(.99);
+}
+
 #error{
-    color:red;
+    color:#d00000;
     margin-top:10px;
     min-height:20px;
 }
 
 
-/* ================= PAGE ================= */
+/* =====================================================
+   PAGE
+===================================================== */
 
 .page{
+    width:100%;
     max-width:1200px;
     margin:auto;
     min-height:100vh;
-    background:#eee;
+    background:#eeeeee;
+    overflow-x:hidden;
 }
 
 .topbar{
@@ -98,33 +116,58 @@ body{
     font-size:20px;
     font-weight:bold;
     padding:9px 10px;
+    border-bottom:1px solid #222;
 }
 
 .student-info{
-    background:#ddd;
-    border:1px solid #aaa;
-    padding:9px;
+    background:#dddddd;
+    border:1px solid #aaaaaa;
+    padding:10px;
     font-weight:bold;
+    font-size:15px;
+    line-height:1.8;
 }
 
 
-/* ================= TABLE ================= */
+/* =====================================================
+   RESULTS WRAPPER
+===================================================== */
+
+#studentResults,
+#adminResults{
+    width:100%;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
 
 .result-table{
     width:100%;
+    min-width:980px;
     border-collapse:collapse;
     table-layout:fixed;
     direction:rtl;
     margin:0;
+    background:#fff;
 }
 
 .result-table td,
 .result-table th{
-    border:1px solid #c6bebe;
-    height:32px;
+    border:1px solid #bfb7b5;
+    height:34px;
     padding:5px;
     text-align:center;
     font-size:13px;
+    vertical-align:middle;
+}
+
+.result-table th{
+    font-weight:bold;
+    background:#f4f4f4;
 }
 
 .subject{
@@ -134,26 +177,43 @@ body{
 }
 
 .space{
-    width:17%;
-    background:#eee;
+    width:13%;
+    background:#eeeeee;
 }
 
-.score,
-.max,
+.score{
+    width:10%;
+}
+
+.max{
+    width:10%;
+}
+
 .grade{
-    width:9%;
+    width:9.5%;
 }
 
 .year{
     background:#ff6659!important;
+    color:#111;
     font-weight:bold;
     font-size:15px!important;
-    height:34px!important;
+    height:35px!important;
 }
 
 .total{
-    background:#c9bebc;
+    background:#c9bebc!important;
     font-weight:bold;
+}
+
+.total td{
+    height:36px;
+}
+
+.general-total{
+    background:#b7aaa7!important;
+    font-weight:bold;
+    font-size:14px!important;
 }
 
 .weak{
@@ -161,11 +221,45 @@ body{
 }
 
 
-/* ================= ADMIN ================= */
+/* =====================================================
+   TOTAL BOX
+===================================================== */
+
+.overall-summary{
+    min-width:980px;
+    border:1px solid #aaa;
+    border-top:0;
+    background:#d4cecc;
+    display:flex;
+    justify-content:center;
+    align-items:stretch;
+    font-weight:bold;
+}
+
+.overall-summary-item{
+    flex:1;
+    text-align:center;
+    padding:12px;
+    border-left:1px solid #aaa;
+}
+
+.overall-summary-item:last-child{
+    border-left:0;
+}
+
+.overall-summary-title{
+    display:block;
+    margin-bottom:5px;
+}
+
+
+/* =====================================================
+   ADMIN
+===================================================== */
 
 .adminbar{
-    background:#ddd;
-    border:1px solid #aaa;
+    background:#dddddd;
+    border:1px solid #aaaaaa;
     padding:10px;
     position:sticky;
     top:0;
@@ -180,6 +274,7 @@ body{
     background:#555;
     cursor:pointer;
     border-radius:3px;
+    font-family:Tahoma,Arial;
 }
 
 .save{
@@ -210,6 +305,7 @@ body{
     text-align:center;
     font-family:Tahoma,Arial;
     font-size:12px;
+    direction:rtl;
 }
 
 .edit-subject{
@@ -223,12 +319,13 @@ body{
     margin:10px;
     text-align:center;
     font-size:13px;
+    line-height:1.7;
 }
 
 .footer{
     text-align:center;
-    background:#ddd;
-    border:1px solid #aaa;
+    background:#dddddd;
+    border:1px solid #aaaaaa;
     padding:12px;
     font-weight:bold;
     font-size:15px;
@@ -242,31 +339,78 @@ body{
     border:0;
     cursor:pointer;
     border-radius:3px;
+    font-family:Tahoma,Arial;
 }
 
 
-/* ================= MOBILE ================= */
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media(max-width:700px){
 
     .topbar{
+        height:42px;
         font-size:15px;
+        padding:11px 8px;
+    }
+
+    .student-info{
+        font-size:12px;
+        padding:8px;
+        line-height:1.9;
+    }
+
+    /*
+       نخلي الجدول بحجم ثابت حتى يبقى قريب
+       من أبعاد النظام الأصلي.
+    */
+
+    .result-table{
+        min-width:980px;
     }
 
     .result-table td,
     .result-table th{
-        font-size:9px;
-        height:30px;
+        font-size:10px;
+        height:31px;
         padding:3px;
     }
 
     .year{
-        font-size:11px!important;
+        font-size:12px!important;
+        height:34px!important;
+    }
+
+    .subject{
+        padding-right:9px!important;
     }
 
     .edit{
         font-size:9px;
         padding:3px;
+    }
+
+    .overall-summary{
+        min-width:980px;
+        font-size:11px;
+    }
+
+}
+
+
+/* =====================================================
+   VERY SMALL SCREENS
+===================================================== */
+
+@media(max-width:380px){
+
+    .login-box{
+        padding:22px;
+    }
+
+    .login-box h1{
+        font-size:23px;
     }
 
 }
@@ -451,11 +595,9 @@ let results = [
 
             {
                 name:"التفكير النقدي وتنمية المهارات 1",
-
                 score1:"32",
                 max1:"50",
                 grade1:"ناجح",
-
                 score2:"32",
                 max2:"50",
                 grade2:"ناجح"
@@ -463,11 +605,9 @@ let results = [
 
             {
                 name:"تشريح عام",
-
                 score1:"97",
                 max1:"150",
                 grade1:"مقبول",
-
                 score2:"97",
                 max2:"150",
                 grade2:"مقبول"
@@ -475,11 +615,9 @@ let results = [
 
             {
                 name:"تشريح وصفي",
-
                 score1:"97",
                 max1:"150",
                 grade1:"مقبول",
-
                 score2:"97",
                 max2:"150",
                 grade2:"مقبول"
@@ -487,11 +625,9 @@ let results = [
 
             {
                 name:"فسيولوجيا عامة",
-
                 score1:"127.25",
                 max1:"200",
                 grade1:"مقبول",
-
                 score2:"127.25",
                 max2:"200",
                 grade2:"مقبول"
@@ -499,11 +635,9 @@ let results = [
 
             {
                 name:"كيمياء حيوية",
-
                 score1:"97",
                 max1:"150",
                 grade1:"مقبول",
-
                 score2:"97",
                 max2:"150",
                 grade2:"مقبول"
@@ -511,11 +645,9 @@ let results = [
 
             {
                 name:"هستولوجيا عامة",
-
                 score1:"64",
                 max1:"100",
                 grade1:"مقبول",
-
                 score2:"64",
                 max2:"100",
                 grade2:"مقبول"
@@ -540,11 +672,9 @@ let results = [
 
             {
                 name:"الإبرازين",
-
                 score1:"107",
                 max1:"150",
                 grade1:"جيد",
-
                 score2:"107",
                 max2:"150",
                 grade2:"جيد"
@@ -552,11 +682,9 @@ let results = [
 
             {
                 name:"المواد الحيوية لطب الأسنان",
-
                 score1:"94",
                 max1:"150",
                 grade1:"مقبول",
-
                 score2:"94",
                 max2:"150",
                 grade2:"مقبول"
@@ -564,11 +692,9 @@ let results = [
 
             {
                 name:"أمراض باطنه وجلدية وتناسلية",
-
                 score1:"111.75",
                 max1:"150",
                 grade1:"جيد",
-
                 score2:"111.75",
                 max2:"150",
                 grade2:"جيد"
@@ -576,11 +702,9 @@ let results = [
 
             {
                 name:"باثولوجيا عامة",
-
                 score1:"110",
                 max1:"150",
                 grade1:"جيد",
-
                 score2:"110",
                 max2:"150",
                 grade2:"جيد"
@@ -588,11 +712,9 @@ let results = [
 
             {
                 name:"بيولوجيا الفم والأسنان",
-
                 score1:"99.25",
                 max1:"150",
                 grade1:"جيد",
-
                 score2:"99.25",
                 max2:"150",
                 grade2:"جيد"
@@ -600,11 +722,9 @@ let results = [
 
             {
                 name:"ريادة الأعمال",
-
                 score1:"35",
                 max1:"50",
                 grade1:"ناجح",
-
                 score2:"35",
                 max2:"50",
                 grade2:"ناجح"
@@ -612,11 +732,9 @@ let results = [
 
             {
                 name:"ميكرو بيولوجي",
-
                 score1:"76.5",
                 max1:"100",
                 grade1:"جيد جدا",
-
                 score2:"76.5",
                 max2:"100",
                 grade2:"جيد جدا"
@@ -641,11 +759,9 @@ let results = [
 
             {
                 name:"أشعة الفم والوجه والفكين",
-
                 score1:"47.73",
                 max1:"100",
                 grade1:"ضعيف",
-
                 score2:"47.73",
                 max2:"100",
                 grade2:"ضعيف"
@@ -653,11 +769,9 @@ let results = [
 
             {
                 name:"الجراحة العامة أنف وأذن وحنجرة ورمد",
-
                 score1:"80",
                 max1:"100",
                 grade1:"جيد جدا",
-
                 score2:"80",
                 max2:"100",
                 grade2:"جيد جدا"
@@ -665,11 +779,9 @@ let results = [
 
             {
                 name:"باثولوجيا الفم والوجه والفكين",
-
                 score1:"168.5",
                 max1:"250",
                 grade1:"جيد",
-
                 score2:"168.5",
                 max2:"250",
                 grade2:"جيد"
@@ -677,11 +789,9 @@ let results = [
 
             {
                 name:"تكنولوجيا الاستعاضات السنية المثبتة",
-
                 score1:"78.5",
                 max1:"150",
                 grade1:"ضعيف",
-
                 score2:"78.5",
                 max2:"150",
                 grade2:"ضعيف"
@@ -689,11 +799,9 @@ let results = [
 
             {
                 name:"تكنولوجيا الاستعاضة الصناعية لطب الأسنان",
-
                 score1:"139.28",
                 max1:"200",
                 grade1:"جيد",
-
                 score2:"139.28",
                 max2:"200",
                 grade2:"جيد"
@@ -701,11 +809,9 @@ let results = [
 
             {
                 name:"تكنولوجيا العلاج التحفظي",
-
                 score1:"113.32",
                 max1:"150",
                 grade1:"جيد جدا",
-
                 score2:"113.32",
                 max2:"150",
                 grade2:"جيد جدا"
@@ -713,11 +819,9 @@ let results = [
 
             {
                 name:"مقرر تنمية مهارات II",
-
                 score1:"25",
                 max1:"50",
                 grade1:"ناجح",
-
                 score2:"25",
                 max2:"50",
                 grade2:"ناجح"
@@ -725,11 +829,9 @@ let results = [
 
             {
                 name:"مقرر مكافحة عدوى",
-
                 score1:"47",
                 max1:"50",
                 grade1:"ممتاز",
-
                 score2:"47",
                 max2:"50",
                 grade2:"ممتاز"
@@ -754,11 +856,9 @@ let results = [
 
             {
                 name:"أشعة الفم والوجه والفكين",
-
                 score1:"64",
                 max1:"100",
                 grade1:"مقبول",
-
                 score2:"64",
                 max2:"100",
                 grade2:"مقبول"
@@ -766,11 +866,9 @@ let results = [
 
             {
                 name:"الجراحة العامة أنف وأذن وحنجرة ورمد",
-
                 score1:"80",
                 max1:"100",
                 grade1:"جيد جدا",
-
                 score2:"80",
                 max2:"100",
                 grade2:"جيد جدا"
@@ -778,11 +876,9 @@ let results = [
 
             {
                 name:"باثولوجيا الفم والوجه والفكين",
-
                 score1:"168.5",
                 max1:"250",
                 grade1:"جيد",
-
                 score2:"168.5",
                 max2:"250",
                 grade2:"جيد"
@@ -790,11 +886,9 @@ let results = [
 
             {
                 name:"تكنولوجيا الاستعاضات السنية المثبتة",
-
                 score1:"97",
                 max1:"150",
                 grade1:"مقبول",
-
                 score2:"97",
                 max2:"150",
                 grade2:"مقبول"
@@ -802,11 +896,9 @@ let results = [
 
             {
                 name:"تكنولوجيا الاستعاضة الصناعية لطب الأسنان",
-
                 score1:"139.28",
                 max1:"200",
                 grade1:"جيد",
-
                 score2:"139.28",
                 max2:"200",
                 grade2:"جيد"
@@ -814,11 +906,9 @@ let results = [
 
             {
                 name:"تكنولوجيا العلاج التحفظي",
-
                 score1:"113.32",
                 max1:"150",
                 grade1:"جيد جدا",
-
                 score2:"113.32",
                 max2:"150",
                 grade2:"جيد جدا"
@@ -826,11 +916,9 @@ let results = [
 
             {
                 name:"مقرر تنمية مهارات II",
-
                 score1:"25",
                 max1:"50",
                 grade1:"ناجح",
-
                 score2:"25",
                 max2:"50",
                 grade2:"ناجح"
@@ -838,11 +926,9 @@ let results = [
 
             {
                 name:"مقرر مكافحة عدوى",
-
                 score1:"47",
                 max1:"50",
                 grade1:"ممتاز",
-
                 score2:"47",
                 max2:"50",
                 grade2:"ممتاز"
@@ -867,11 +953,9 @@ let results = [
 
             {
                 name:"أشعة الفم والوجه والفكين",
-
                 score1:"63.75",
                 max1:"100",
                 grade1:"مقبول",
-
                 score2:"63.75",
                 max2:"100",
                 grade2:"مقبول"
@@ -879,11 +963,9 @@ let results = [
 
             {
                 name:"الاستعاضة السنية المثبتة",
-
                 score1:"100",
                 max1:"150",
                 grade1:"جيد",
-
                 score2:"100",
                 max2:"150",
                 grade2:"جيد"
@@ -891,25 +973,20 @@ let results = [
 
             {
                 name:"الاستعاضة الصناعية لطب الأسنان",
-
                 score1:"108.5",
                 max1:"150",
                 grade1:"جيد",
-
                 score2:"108.5",
                 max2:"150",
                 grade2:"جيد",
-
                 highlight:true
             },
 
             {
                 name:"العلاج التحفظي",
-
                 score1:"65",
                 max1:"100",
                 grade1:"جيد",
-
                 score2:"65",
                 max2:"100",
                 grade2:"جيد"
@@ -917,11 +994,9 @@ let results = [
 
             {
                 name:"أمراض اللثة",
-
                 score1:"65",
                 max1:"100",
                 grade1:"جيد",
-
                 score2:"65",
                 max2:"100",
                 grade2:"جيد"
@@ -929,11 +1004,9 @@ let results = [
 
             {
                 name:"تقويم الأسنان",
-
                 score1:"60",
                 max1:"100",
                 grade1:"مقبول",
-
                 score2:"60",
                 max2:"100",
                 grade2:"مقبول"
@@ -941,11 +1014,9 @@ let results = [
 
             {
                 name:"جراحة الفم والوجه والفكين",
-
                 score1:"90",
                 max1:"150",
                 grade1:"مقبول",
-
                 score2:"90",
                 max2:"150",
                 grade2:"مقبول"
@@ -953,11 +1024,9 @@ let results = [
 
             {
                 name:"طب الفم والتشخيص",
-
                 score1:"93.75",
                 max1:"150",
                 grade1:"مقبول",
-
                 score2:"93.75",
                 max2:"150",
                 grade2:"مقبول"
@@ -965,11 +1034,9 @@ let results = [
 
             {
                 name:"علاج الجذور",
-
                 score1:"66",
                 max1:"100",
                 grade1:"جيد",
-
                 score2:"66",
                 max2:"100",
                 grade2:"جيد"
@@ -994,11 +1061,9 @@ let results = [
 
             {
                 name:"الاستعاضة السنية المثبتة",
-
                 score1:"97.75",
                 max1:"150",
                 grade1:"جيد",
-
                 score2:"97.75",
                 max2:"150",
                 grade2:"جيد"
@@ -1006,11 +1071,9 @@ let results = [
 
             {
                 name:"الاستعاضة الصناعية لطب الأسنان",
-
                 score1:"91.5",
                 max1:"150",
                 grade1:"مقبول",
-
                 score2:"91.5",
                 max2:"150",
                 grade2:"مقبول"
@@ -1018,11 +1081,9 @@ let results = [
 
             {
                 name:"العلاج التحفظي",
-
                 score1:"98.5",
                 max1:"150",
                 grade1:"جيد",
-
                 score2:"98.5",
                 max2:"150",
                 grade2:"جيد"
@@ -1030,11 +1091,9 @@ let results = [
 
             {
                 name:"أمراض اللثة",
-
                 score1:"65",
                 max1:"100",
                 grade1:"جيد",
-
                 score2:"65",
                 max2:"100",
                 grade2:"جيد"
@@ -1042,11 +1101,9 @@ let results = [
 
             {
                 name:"جراحة الفم والوجه والفكين",
-
                 score1:"83",
                 max1:"150",
                 grade1:"ضعيف",
-
                 score2:"83",
                 max2:"150",
                 grade2:"ضعيف"
@@ -1054,11 +1111,9 @@ let results = [
 
             {
                 name:"طب أسنان الأطفال",
-
                 score1:"90",
                 max1:"150",
                 grade1:"مقبول",
-
                 score2:"90",
                 max2:"150",
                 grade2:"مقبول"
@@ -1066,11 +1121,9 @@ let results = [
 
             {
                 name:"طب الفم",
-
                 score1:"51",
                 max1:"100",
                 grade1:"ضعيف",
-
                 score2:"51",
                 max2:"100",
                 grade2:"ضعيف"
@@ -1078,11 +1131,9 @@ let results = [
 
             {
                 name:"علاج الجذور",
-
                 score1:"60",
                 max1:"100",
                 grade1:"مقبول",
-
                 score2:"60",
                 max2:"100",
                 grade2:"مقبول"
@@ -1108,6 +1159,121 @@ let results = [
 
 
 /* =====================================================
+   حساب المجموع
+===================================================== */
+
+function calculateStage(stage){
+
+    /*
+       إذا كان عند المرحلة مجموع محفوظ،
+       نحافظ عليه كما هو.
+    */
+
+    if(
+        stage.total !== undefined &&
+        stage.total !== null &&
+        String(stage.total).trim() !== ""
+    ){
+        return String(stage.total);
+    }
+
+
+    let total = 0;
+
+    (stage.subjects || []).forEach(subject=>{
+
+        const score =
+            parseFloat(subject.score1);
+
+        if(!isNaN(score)){
+            total += score;
+        }
+
+    });
+
+
+    if(total === 0){
+        return "";
+    }
+
+
+    return Number.isInteger(total)
+        ? String(total)
+        : total.toFixed(2).replace(/\.00$/,"");
+
+}
+
+
+
+/* =====================================================
+   حساب التقدير الكلي
+===================================================== */
+
+function calculateGrade(stage){
+
+    if(
+        stage.totalGrade !== undefined &&
+        stage.totalGrade !== null &&
+        String(stage.totalGrade).trim() !== ""
+    ){
+        return String(stage.totalGrade);
+    }
+
+
+    let total = 0;
+    let max = 0;
+
+    (stage.subjects || []).forEach(subject=>{
+
+        const score =
+            parseFloat(subject.score1);
+
+        const maximum =
+            parseFloat(subject.max1);
+
+        if(!isNaN(score)){
+            total += score;
+        }
+
+        if(!isNaN(maximum)){
+            max += maximum;
+        }
+
+    });
+
+
+    if(max <= 0){
+        return "";
+    }
+
+
+    const percentage =
+        (total / max) * 100;
+
+
+    if(percentage >= 85){
+        return "ممتاز";
+    }
+
+    if(percentage >= 75){
+        return "جيد جدا";
+    }
+
+    if(percentage >= 65){
+        return "جيد";
+    }
+
+    if(percentage >= 50){
+        return "مقبول";
+    }
+
+    return "ضعيف";
+
+}
+
+
+
+/* =====================================================
    تحميل البيانات المحفوظة
 ===================================================== */
 
@@ -1118,10 +1284,12 @@ try{
             "resultsSystemData"
         );
 
+
     if(saved){
 
         const parsed =
             JSON.parse(saved);
+
 
         if(Array.isArray(parsed)){
 
@@ -1193,8 +1361,7 @@ function login(){
         document
         .getElementById("username")
         .value
-        .trim()
-        .toLowerCase();
+        .trim();
 
 
     const password =
@@ -1212,11 +1379,13 @@ function login(){
     error.textContent = "";
 
 
-    /* حساب الطالب */
+    /* =================================================
+       حساب الطالب
+    ================================================= */
 
     if(
-        username === "student" &&
-        password === "123456"
+        username === "42200026" &&
+        password === "25454613"
     ){
 
         showPage("studentPage");
@@ -1228,7 +1397,9 @@ function login(){
     }
 
 
-    /* حساب المدير */
+    /* =================================================
+       حساب المدير
+    ================================================= */
 
     if(
         username === "admin" &&
@@ -1260,7 +1431,33 @@ function showStudent(){
     let html = "";
 
 
+    let overallTotal = 0;
+
+    let stagesWithTotals = 0;
+
+
     results.forEach(stage=>{
+
+        const stageTotal =
+            calculateStage(stage);
+
+
+        const stageGrade =
+            calculateGrade(stage);
+
+
+        const numericTotal =
+            parseFloat(stageTotal);
+
+
+        if(!isNaN(numericTotal)){
+
+            overallTotal += numericTotal;
+
+            stagesWithTotals++;
+
+        }
+
 
         html += `
 
@@ -1317,103 +1514,123 @@ function showStudent(){
         `;
 
 
-        (stage.subjects || [])
-        .forEach(s=>{
-
-            const weak =
-                (
-                    s.grade1 === "ضعيف" ||
-                    s.grade2 === "ضعيف" ||
-                    s.highlight
-                )
-                ? "weak"
-                : "";
-
-
-            html += `
-
-            <tr class="${weak}">
-
-                <td class="subject">
-
-                    ${escapeHTML(s.name)}
-
-                </td>
-
-
-                <td class="space"></td>
-
-
-                <td class="score">
-
-                    ${escapeHTML(s.score1 || "")}
-
-                </td>
-
-
-                <td class="max">
-
-                    ${escapeHTML(s.max1 || "")}
-
-                </td>
-
-
-                <td class="grade">
-
-                    ${escapeHTML(s.grade1 || "")}
-
-                </td>
-
-
-                <td class="score">
-
-                    ${escapeHTML(s.score2 || "")}
-
-                </td>
-
-
-                <td class="max">
-
-                    ${escapeHTML(s.max2 || "")}
-
-                </td>
-
-
-                <td class="grade">
-
-                    ${escapeHTML(s.grade2 || "")}
-
-                </td>
-
-            </tr>
-
-            `;
-
-        });
-
-
         if(
             stage.subjects &&
             stage.subjects.length
         ){
 
+            stage.subjects.forEach(s=>{
+
+                const weak =
+                    (
+                        s.grade1 === "ضعيف" ||
+                        s.grade2 === "ضعيف" ||
+                        s.highlight
+                    )
+                    ? "weak"
+                    : "";
+
+
+                html += `
+
+                <tr class="${weak}">
+
+                    <td class="subject">
+
+                        ${escapeHTML(s.name)}
+
+                    </td>
+
+
+                    <td class="space"></td>
+
+
+                    <td class="score">
+
+                        ${escapeHTML(
+                            s.score1 || ""
+                        )}
+
+                    </td>
+
+
+                    <td class="max">
+
+                        ${escapeHTML(
+                            s.max1 || ""
+                        )}
+
+                    </td>
+
+
+                    <td class="grade">
+
+                        ${escapeHTML(
+                            s.grade1 || ""
+                        )}
+
+                    </td>
+
+
+                    <td class="score">
+
+                        ${escapeHTML(
+                            s.score2 || ""
+                        )}
+
+                    </td>
+
+
+                    <td class="max">
+
+                        ${escapeHTML(
+                            s.max2 || ""
+                        )}
+
+                    </td>
+
+
+                    <td class="grade">
+
+                        ${escapeHTML(
+                            s.grade2 || ""
+                        )}
+
+                    </td>
+
+                </tr>
+
+                `;
+
+            });
+
+
+            /*
+               المجموع والتقدير الكلي للمرحلة
+            */
+
             html += `
 
             <tr class="total">
 
-                <td class="subject">
+                <td
+                    colspan="2"
+                    class="subject"
+                >
+
                     المجموع الكلي
-                </td>
-
-                <td class="space"></td>
-
-                <td colspan="2">
-
-                    ${escapeHTML(
-                        stage.total || ""
-                    )}
 
                 </td>
+
+
+                <td
+                    colspan="2"
+                >
+
+                    ${escapeHTML(stageTotal)}
+
+                </td>
+
 
                 <td>
 
@@ -1421,13 +1638,28 @@ function showStudent(){
 
                 </td>
 
-                <td colspan="2"></td>
 
-                <td>
+                <td
+                    colspan="3"
+                >
 
-                    ${escapeHTML(
-                        stage.totalGrade || ""
-                    )}
+                    ${escapeHTML(stageGrade)}
+
+                </td>
+
+            </tr>
+
+            `;
+
+        }else{
+
+            html += `
+
+            <tr class="total">
+
+                <td colspan="8">
+
+                    لا توجد مواد مسجلة لهذه المرحلة
 
                 </td>
 
@@ -1447,7 +1679,55 @@ function showStudent(){
     });
 
 
+    /*
+       المجموع العام لكل المراحل
+    */
+
+    let formattedOverall = "";
+
+    if(stagesWithTotals){
+
+        formattedOverall =
+            Number.isInteger(overallTotal)
+            ? String(overallTotal)
+            : overallTotal
+                .toFixed(2)
+                .replace(/\.00$/,"");
+
+    }
+
+
     html += `
+
+        <div class="overall-summary">
+
+            <div class="overall-summary-item">
+
+                <span class="overall-summary-title">
+                    المجموع الكلي لجميع المراحل
+                </span>
+
+                <span>
+                    ${escapeHTML(formattedOverall)}
+                </span>
+
+            </div>
+
+
+            <div class="overall-summary-item">
+
+                <span class="overall-summary-title">
+                    عدد المراحل المحتسبة
+                </span>
+
+                <span>
+                    ${stagesWithTotals}
+                </span>
+
+            </div>
+
+        </div>
+
 
         <div class="footer">
 
@@ -1477,6 +1757,14 @@ function showAdmin(){
 
 
     results.forEach((stage,si)=>{
+
+        const stageTotal =
+            calculateStage(stage);
+
+
+        const stageGrade =
+            calculateGrade(stage);
+
 
         html += `
 
@@ -1708,14 +1996,48 @@ function showAdmin(){
 
         html += `
 
+            <tr class="total">
+
+                <td
+                    colspan="2"
+                    class="subject"
+                >
+
+                    المجموع الكلي
+
+                </td>
+
+
+                <td colspan="2">
+
+                    ${escapeHTML(stageTotal)}
+
+                </td>
+
+
+                <td>
+
+                    التقدير الكلي
+
+                </td>
+
+
+                <td colspan="3">
+
+                    ${escapeHTML(stageGrade)}
+
+                </td>
+
+            </tr>
+
+
             <tr>
 
                 <td colspan="8">
 
                     <button
 
-                        class="adminbar button addsubject"
-
+                        class="addsubject"
                         onclick="addSubject(${si})"
 
                     >
@@ -1727,8 +2049,7 @@ function showAdmin(){
 
                     <button
 
-                        class="adminbar button addstage"
-
+                        class="addstage"
                         onclick="insertStage(${si})"
 
                     >
@@ -1740,8 +2061,7 @@ function showAdmin(){
 
                     <button
 
-                        class="adminbar button delete"
-
+                        class="delete"
                         onclick="deleteStage(${si})"
 
                     >
@@ -1768,7 +2088,9 @@ function showAdmin(){
 
 
 
-    /* اسم المرحلة */
+    /* =================================================
+       اسم المرحلة
+    ================================================= */
 
     document
         .querySelectorAll(
@@ -1796,7 +2118,9 @@ function showAdmin(){
 
 
 
-    /* بيانات المادة */
+    /* =================================================
+       بيانات المادة
+    ================================================= */
 
     document
         .querySelectorAll("[data-key]")
@@ -1963,6 +2287,43 @@ function saveData(){
 
     try{
 
+        /*
+           قبل الحفظ نضمن وجود المجموع
+           والتقدير الكلي للمرحلة.
+        */
+
+        results.forEach(stage=>{
+
+            if(
+                !stage.total ||
+                String(stage.total).trim() === ""
+            ){
+
+                stage.total =
+                    calculateStage({
+                        ...stage,
+                        total:""
+                    });
+
+            }
+
+
+            if(
+                !stage.totalGrade ||
+                String(stage.totalGrade).trim() === ""
+            ){
+
+                stage.totalGrade =
+                    calculateGrade({
+                        ...stage,
+                        totalGrade:""
+                    });
+
+            }
+
+        });
+
+
         localStorage.setItem(
             "resultsSystemData",
             JSON.stringify(results)
@@ -1972,6 +2333,9 @@ function saveData(){
         alert(
             "تم حفظ التعديلات بنجاح"
         );
+
+
+        showAdmin();
 
     }
 
