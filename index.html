@@ -274,3 +274,1808 @@ body{
 </style>
 
 </head>
+
+
+<body>
+
+
+<!-- =====================================================
+     LOGIN
+===================================================== -->
+
+<div id="loginPage" class="login">
+
+    <div class="login-box">
+
+        <h1>
+            نظام النتائج
+        </h1>
+
+        <input
+            id="username"
+            type="text"
+            placeholder="اسم المستخدم"
+            autocomplete="username"
+        >
+
+        <input
+            id="password"
+            type="password"
+            placeholder="كلمة المرور"
+            autocomplete="current-password"
+        >
+
+        <button
+            id="loginButton"
+            type="button"
+        >
+            تسجيل الدخول
+        </button>
+
+        <div id="error"></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     STUDENT PAGE
+===================================================== -->
+
+<div
+    id="studentPage"
+    class="page hidden"
+>
+
+    <div class="topbar">
+        النتيجة العامة لنظام الفصول
+    </div>
+
+
+    <div class="student-info">
+
+        اسم الطالب:
+        <strong>الطالب</strong>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;
+
+        رقم الجلوس:
+        <strong>000000</strong>
+
+    </div>
+
+
+    <div id="studentResults"></div>
+
+
+    <button
+        class="logout"
+        id="studentLogout"
+    >
+        تسجيل الخروج
+    </button>
+
+</div>
+
+
+
+<!-- =====================================================
+     ADMIN PAGE
+===================================================== -->
+
+<div
+    id="adminPage"
+    class="page hidden"
+>
+
+    <div class="topbar">
+        لوحة إدارة النتائج
+    </div>
+
+
+    <div class="adminbar">
+
+        <button
+            class="add"
+            id="addStageButton"
+        >
+            + إضافة مرحلة
+        </button>
+
+
+        <button
+            class="save"
+            id="saveButton"
+        >
+            حفظ التعديلات
+        </button>
+
+
+        <button
+            id="adminLogout"
+        >
+            تسجيل الخروج
+        </button>
+
+    </div>
+
+
+    <div class="admin-note">
+
+        من حساب المدير يمكنك تعديل أسماء المواد
+        والدرجات والتقديرات، وإضافة المواد والمراحل.
+
+    </div>
+
+
+    <div id="adminResults"></div>
+
+</div>
+
+
+
+<script>
+
+"use strict";
+
+
+/* =====================================================
+   بيانات النتائج
+===================================================== */
+
+let results = [
+
+    /* =================================================
+       1
+    ================================================= */
+
+    {
+        name:
+        "الفرقة الأولى 2020/2021 - طب وجراحة الفم والأسنان",
+
+        subjects:[]
+    },
+
+
+    /* =================================================
+       2
+    ================================================= */
+
+    {
+        name:
+        "الفرقة الأولى 2021/2022 - طب وجراحة الفم والأسنان",
+
+        subjects:[
+
+            {
+                name:"التفكير النقدي وتنمية المهارات 1",
+
+                score1:"32",
+                max1:"50",
+                grade1:"ناجح",
+
+                score2:"32",
+                max2:"50",
+                grade2:"ناجح"
+            },
+
+            {
+                name:"تشريح عام",
+
+                score1:"97",
+                max1:"150",
+                grade1:"مقبول",
+
+                score2:"97",
+                max2:"150",
+                grade2:"مقبول"
+            },
+
+            {
+                name:"تشريح وصفي",
+
+                score1:"97",
+                max1:"150",
+                grade1:"مقبول",
+
+                score2:"97",
+                max2:"150",
+                grade2:"مقبول"
+            },
+
+            {
+                name:"فسيولوجيا عامة",
+
+                score1:"127.25",
+                max1:"200",
+                grade1:"مقبول",
+
+                score2:"127.25",
+                max2:"200",
+                grade2:"مقبول"
+            },
+
+            {
+                name:"كيمياء حيوية",
+
+                score1:"97",
+                max1:"150",
+                grade1:"مقبول",
+
+                score2:"97",
+                max2:"150",
+                grade2:"مقبول"
+            },
+
+            {
+                name:"هستولوجيا عامة",
+
+                score1:"64",
+                max1:"100",
+                grade1:"مقبول",
+
+                score2:"64",
+                max2:"100",
+                grade2:"مقبول"
+            }
+
+        ],
+
+        total:"482.25",
+        totalGrade:"ل"
+    },
+
+
+    /* =================================================
+       3
+    ================================================= */
+
+    {
+        name:
+        "الفرقة الثانية 2022/2023 - طب وجراحة الفم والأسنان",
+
+        subjects:[
+
+            {
+                name:"الإبرازين",
+
+                score1:"107",
+                max1:"150",
+                grade1:"جيد",
+
+                score2:"107",
+                max2:"150",
+                grade2:"جيد"
+            },
+
+            {
+                name:"المواد الحيوية لطب الأسنان",
+
+                score1:"94",
+                max1:"150",
+                grade1:"مقبول",
+
+                score2:"94",
+                max2:"150",
+                grade2:"مقبول"
+            },
+
+            {
+                name:"أمراض باطنه وجلدية وتناسلية",
+
+                score1:"111.75",
+                max1:"150",
+                grade1:"جيد",
+
+                score2:"111.75",
+                max2:"150",
+                grade2:"جيد"
+            },
+
+            {
+                name:"باثولوجيا عامة",
+
+                score1:"110",
+                max1:"150",
+                grade1:"جيد",
+
+                score2:"110",
+                max2:"150",
+                grade2:"جيد"
+            },
+
+            {
+                name:"بيولوجيا الفم والأسنان",
+
+                score1:"99.25",
+                max1:"150",
+                grade1:"جيد",
+
+                score2:"99.25",
+                max2:"150",
+                grade2:"جيد"
+            },
+
+            {
+                name:"ريادة الأعمال",
+
+                score1:"35",
+                max1:"50",
+                grade1:"ناجح",
+
+                score2:"35",
+                max2:"50",
+                grade2:"ناجح"
+            },
+
+            {
+                name:"ميكرو بيولوجي",
+
+                score1:"76.5",
+                max1:"100",
+                grade1:"جيد جدا",
+
+                score2:"76.5",
+                max2:"100",
+                grade2:"جيد جدا"
+            }
+
+        ],
+
+        total:"598.5",
+        totalGrade:"ج"
+    },
+
+
+    /* =================================================
+       4
+    ================================================= */
+
+    {
+        name:
+        "الفرقة الثالثة 2023/2024 - طب وجراحة الفم والأسنان",
+
+        subjects:[
+
+            {
+                name:"أشعة الفم والوجه والفكين",
+
+                score1:"47.73",
+                max1:"100",
+                grade1:"ضعيف",
+
+                score2:"47.73",
+                max2:"100",
+                grade2:"ضعيف"
+            },
+
+            {
+                name:"الجراحة العامة أنف وأذن وحنجرة ورمد",
+
+                score1:"80",
+                max1:"100",
+                grade1:"جيد جدا",
+
+                score2:"80",
+                max2:"100",
+                grade2:"جيد جدا"
+            },
+
+            {
+                name:"باثولوجيا الفم والوجه والفكين",
+
+                score1:"168.5",
+                max1:"250",
+                grade1:"جيد",
+
+                score2:"168.5",
+                max2:"250",
+                grade2:"جيد"
+            },
+
+            {
+                name:"تكنولوجيا الاستعاضات السنية المثبتة",
+
+                score1:"78.5",
+                max1:"150",
+                grade1:"ضعيف",
+
+                score2:"78.5",
+                max2:"150",
+                grade2:"ضعيف"
+            },
+
+            {
+                name:"تكنولوجيا الاستعاضة الصناعية لطب الأسنان",
+
+                score1:"139.28",
+                max1:"200",
+                grade1:"جيد",
+
+                score2:"139.28",
+                max2:"200",
+                grade2:"جيد"
+            },
+
+            {
+                name:"تكنولوجيا العلاج التحفظي",
+
+                score1:"113.32",
+                max1:"150",
+                grade1:"جيد جدا",
+
+                score2:"113.32",
+                max2:"150",
+                grade2:"جيد جدا"
+            },
+
+            {
+                name:"مقرر تنمية مهارات II",
+
+                score1:"25",
+                max1:"50",
+                grade1:"ناجح",
+
+                score2:"25",
+                max2:"50",
+                grade2:"ناجح"
+            },
+
+            {
+                name:"مقرر مكافحة عدوى",
+
+                score1:"47",
+                max1:"50",
+                grade1:"ممتاز",
+
+                score2:"47",
+                max2:"50",
+                grade2:"ممتاز"
+            }
+
+        ],
+
+        total:"674.33",
+        totalGrade:"مواد"
+    },
+
+
+    /* =================================================
+       5
+    ================================================= */
+
+    {
+        name:
+        "الفرقة الثالثة 2023/2024 - طب وجراحة الفم والأسنان دور سبتمبر",
+
+        subjects:[
+
+            {
+                name:"أشعة الفم والوجه والفكين",
+
+                score1:"64",
+                max1:"100",
+                grade1:"مقبول",
+
+                score2:"64",
+                max2:"100",
+                grade2:"مقبول"
+            },
+
+            {
+                name:"الجراحة العامة أنف وأذن وحنجرة ورمد",
+
+                score1:"80",
+                max1:"100",
+                grade1:"جيد جدا",
+
+                score2:"80",
+                max2:"100",
+                grade2:"جيد جدا"
+            },
+
+            {
+                name:"باثولوجيا الفم والوجه والفكين",
+
+                score1:"168.5",
+                max1:"250",
+                grade1:"جيد",
+
+                score2:"168.5",
+                max2:"250",
+                grade2:"جيد"
+            },
+
+            {
+                name:"تكنولوجيا الاستعاضات السنية المثبتة",
+
+                score1:"97",
+                max1:"150",
+                grade1:"مقبول",
+
+                score2:"97",
+                max2:"150",
+                grade2:"مقبول"
+            },
+
+            {
+                name:"تكنولوجيا الاستعاضة الصناعية لطب الأسنان",
+
+                score1:"139.28",
+                max1:"200",
+                grade1:"جيد",
+
+                score2:"139.28",
+                max2:"200",
+                grade2:"جيد"
+            },
+
+            {
+                name:"تكنولوجيا العلاج التحفظي",
+
+                score1:"113.32",
+                max1:"150",
+                grade1:"جيد جدا",
+
+                score2:"113.32",
+                max2:"150",
+                grade2:"جيد جدا"
+            },
+
+            {
+                name:"مقرر تنمية مهارات II",
+
+                score1:"25",
+                max1:"50",
+                grade1:"ناجح",
+
+                score2:"25",
+                max2:"50",
+                grade2:"ناجح"
+            },
+
+            {
+                name:"مقرر مكافحة عدوى",
+
+                score1:"47",
+                max1:"50",
+                grade1:"ممتاز",
+
+                score2:"47",
+                max2:"50",
+                grade2:"ممتاز"
+            }
+
+        ],
+
+        total:"709.1",
+        totalGrade:"ج"
+    },
+
+
+    /* =================================================
+       6
+    ================================================= */
+
+    {
+        name:
+        "الفرقة الرابعة 2024/2025 - طب وجراحة الفم والأسنان",
+
+        subjects:[
+
+            {
+                name:"أشعة الفم والوجه والفكين",
+
+                score1:"63.75",
+                max1:"100",
+                grade1:"مقبول",
+
+                score2:"63.75",
+                max2:"100",
+                grade2:"مقبول"
+            },
+
+            {
+                name:"الاستعاضة السنية المثبتة",
+
+                score1:"100",
+                max1:"150",
+                grade1:"جيد",
+
+                score2:"100",
+                max2:"150",
+                grade2:"جيد"
+            },
+
+            {
+                name:"الاستعاضة الصناعية لطب الأسنان",
+
+                score1:"108.5",
+                max1:"150",
+                grade1:"جيد",
+
+                score2:"108.5",
+                max2:"150",
+                grade2:"جيد",
+
+                highlight:true
+            },
+
+            {
+                name:"العلاج التحفظي",
+
+                score1:"65",
+                max1:"100",
+                grade1:"جيد",
+
+                score2:"65",
+                max2:"100",
+                grade2:"جيد"
+            },
+
+            {
+                name:"أمراض اللثة",
+
+                score1:"65",
+                max1:"100",
+                grade1:"جيد",
+
+                score2:"65",
+                max2:"100",
+                grade2:"جيد"
+            },
+
+            {
+                name:"تقويم الأسنان",
+
+                score1:"60",
+                max1:"100",
+                grade1:"مقبول",
+
+                score2:"60",
+                max2:"100",
+                grade2:"مقبول"
+            },
+
+            {
+                name:"جراحة الفم والوجه والفكين",
+
+                score1:"90",
+                max1:"150",
+                grade1:"مقبول",
+
+                score2:"90",
+                max2:"150",
+                grade2:"مقبول"
+            },
+
+            {
+                name:"طب الفم والتشخيص",
+
+                score1:"93.75",
+                max1:"150",
+                grade1:"مقبول",
+
+                score2:"93.75",
+                max2:"150",
+                grade2:"مقبول"
+            },
+
+            {
+                name:"علاج الجذور",
+
+                score1:"66",
+                max1:"100",
+                grade1:"جيد",
+
+                score2:"66",
+                max2:"100",
+                grade2:"جيد"
+            }
+
+        ],
+
+        total:"712",
+        totalGrade:"ل"
+    },
+
+
+    /* =================================================
+       7
+    ================================================= */
+
+    {
+        name:
+        "الفرقة الخامسة 2025/2026 - طب وجراحة الفم والأسنان",
+
+        subjects:[
+
+            {
+                name:"الاستعاضة السنية المثبتة",
+
+                score1:"97.75",
+                max1:"150",
+                grade1:"جيد",
+
+                score2:"97.75",
+                max2:"150",
+                grade2:"جيد"
+            },
+
+            {
+                name:"الاستعاضة الصناعية لطب الأسنان",
+
+                score1:"91.5",
+                max1:"150",
+                grade1:"مقبول",
+
+                score2:"91.5",
+                max2:"150",
+                grade2:"مقبول"
+            },
+
+            {
+                name:"العلاج التحفظي",
+
+                score1:"98.5",
+                max1:"150",
+                grade1:"جيد",
+
+                score2:"98.5",
+                max2:"150",
+                grade2:"جيد"
+            },
+
+            {
+                name:"أمراض اللثة",
+
+                score1:"65",
+                max1:"100",
+                grade1:"جيد",
+
+                score2:"65",
+                max2:"100",
+                grade2:"جيد"
+            },
+
+            {
+                name:"جراحة الفم والوجه والفكين",
+
+                score1:"83",
+                max1:"150",
+                grade1:"ضعيف",
+
+                score2:"83",
+                max2:"150",
+                grade2:"ضعيف"
+            },
+
+            {
+                name:"طب أسنان الأطفال",
+
+                score1:"90",
+                max1:"150",
+                grade1:"مقبول",
+
+                score2:"90",
+                max2:"150",
+                grade2:"مقبول"
+            },
+
+            {
+                name:"طب الفم",
+
+                score1:"51",
+                max1:"100",
+                grade1:"ضعيف",
+
+                score2:"51",
+                max2:"100",
+                grade2:"ضعيف"
+            },
+
+            {
+                name:"علاج الجذور",
+
+                score1:"60",
+                max1:"100",
+                grade1:"مقبول",
+
+                score2:"60",
+                max2:"100",
+                grade2:"مقبول"
+            }
+
+        ]
+    },
+
+
+    /* =================================================
+       8
+    ================================================= */
+
+    {
+        name:
+        "الفرقة الخامسة 2025/2026 - طب وجراحة الفم والأسنان دور سبتمبر",
+
+        subjects:[]
+    }
+
+];
+
+
+
+/* =====================================================
+   تحميل البيانات المحفوظة
+===================================================== */
+
+try{
+
+    const saved =
+        localStorage.getItem(
+            "resultsSystemData"
+        );
+
+    if(saved){
+
+        const parsed =
+            JSON.parse(saved);
+
+        if(Array.isArray(parsed)){
+
+            results = parsed;
+
+        }
+
+    }
+
+}catch(e){
+
+    console.log(e);
+
+}
+
+
+
+/* =====================================================
+   حماية النصوص
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+
+/* =====================================================
+   إظهار الصفحات
+===================================================== */
+
+function showPage(id){
+
+    document
+        .getElementById("loginPage")
+        .classList.add("hidden");
+
+    document
+        .getElementById("studentPage")
+        .classList.add("hidden");
+
+    document
+        .getElementById("adminPage")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById(id)
+        .classList.remove("hidden");
+
+}
+
+
+
+/* =====================================================
+   تسجيل الدخول
+===================================================== */
+
+function login(){
+
+    const username =
+        document
+        .getElementById("username")
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    const password =
+        document
+        .getElementById("password")
+        .value
+        .trim();
+
+
+    const error =
+        document
+        .getElementById("error");
+
+
+    error.textContent = "";
+
+
+    /* حساب الطالب */
+
+    if(
+        username === "student" &&
+        password === "123456"
+    ){
+
+        showPage("studentPage");
+
+        showStudent();
+
+        return;
+
+    }
+
+
+    /* حساب المدير */
+
+    if(
+        username === "admin" &&
+        password === "admin123"
+    ){
+
+        showPage("adminPage");
+
+        showAdmin();
+
+        return;
+
+    }
+
+
+    error.textContent =
+        "اسم المستخدم أو كلمة المرور غير صحيحة";
+
+}
+
+
+
+/* =====================================================
+   عرض الطالب
+===================================================== */
+
+function showStudent(){
+
+    let html = "";
+
+
+    results.forEach(stage=>{
+
+        html += `
+
+        <table class="result-table">
+
+            <tr>
+
+                <td
+                    colspan="8"
+                    class="year"
+                >
+
+                    ${escapeHTML(stage.name)}
+
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <th class="subject">
+                    اسم المادة
+                </th>
+
+                <th class="space"></th>
+
+                <th class="score">
+                    الدرجة المحصلة
+                </th>
+
+                <th class="max">
+                    الدرجة الكلية
+                </th>
+
+                <th class="grade">
+                    التقدير
+                </th>
+
+                <th class="score">
+                    الدرجة المحصلة
+                </th>
+
+                <th class="max">
+                    الدرجة الكلية
+                </th>
+
+                <th class="grade">
+                    التقدير
+                </th>
+
+            </tr>
+
+        `;
+
+
+        (stage.subjects || [])
+        .forEach(s=>{
+
+            const weak =
+                (
+                    s.grade1 === "ضعيف" ||
+                    s.grade2 === "ضعيف" ||
+                    s.highlight
+                )
+                ? "weak"
+                : "";
+
+
+            html += `
+
+            <tr class="${weak}">
+
+                <td class="subject">
+
+                    ${escapeHTML(s.name)}
+
+                </td>
+
+
+                <td class="space"></td>
+
+
+                <td class="score">
+
+                    ${escapeHTML(s.score1 || "")}
+
+                </td>
+
+
+                <td class="max">
+
+                    ${escapeHTML(s.max1 || "")}
+
+                </td>
+
+
+                <td class="grade">
+
+                    ${escapeHTML(s.grade1 || "")}
+
+                </td>
+
+
+                <td class="score">
+
+                    ${escapeHTML(s.score2 || "")}
+
+                </td>
+
+
+                <td class="max">
+
+                    ${escapeHTML(s.max2 || "")}
+
+                </td>
+
+
+                <td class="grade">
+
+                    ${escapeHTML(s.grade2 || "")}
+
+                </td>
+
+            </tr>
+
+            `;
+
+        });
+
+
+        if(
+            stage.subjects &&
+            stage.subjects.length
+        ){
+
+            html += `
+
+            <tr class="total">
+
+                <td class="subject">
+                    المجموع الكلي
+                </td>
+
+                <td class="space"></td>
+
+                <td colspan="2">
+
+                    ${escapeHTML(
+                        stage.total || ""
+                    )}
+
+                </td>
+
+                <td>
+
+                    التقدير الكلي
+
+                </td>
+
+                <td colspan="2"></td>
+
+                <td>
+
+                    ${escapeHTML(
+                        stage.totalGrade || ""
+                    )}
+
+                </td>
+
+            </tr>
+
+            `;
+
+        }
+
+
+        html += `
+
+        </table>
+
+        `;
+
+    });
+
+
+    html += `
+
+        <div class="footer">
+
+            هذه الصفحة لعرض النتيجة
+            وليست شهادة رسمية
+
+        </div>
+
+    `;
+
+
+    document
+        .getElementById("studentResults")
+        .innerHTML = html;
+
+}
+
+
+
+/* =====================================================
+   لوحة المدير
+===================================================== */
+
+function showAdmin(){
+
+    let html = "";
+
+
+    results.forEach((stage,si)=>{
+
+        html += `
+
+        <table class="result-table">
+
+            <tr>
+
+                <td
+                    colspan="8"
+                    class="year"
+                >
+
+                    <input
+
+                        class="edit"
+
+                        value="${escapeHTML(
+                            stage.name
+                        )}"
+
+                        data-stage-name="${si}"
+
+                    >
+
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <th class="subject">
+                    اسم المادة
+                </th>
+
+                <th class="space"></th>
+
+                <th class="score">
+                    الدرجة المحصلة
+                </th>
+
+                <th class="max">
+                    الدرجة الكلية
+                </th>
+
+                <th class="grade">
+                    التقدير
+                </th>
+
+                <th class="score">
+                    الدرجة المحصلة
+                </th>
+
+                <th class="max">
+                    الدرجة الكلية
+                </th>
+
+                <th class="grade">
+                    التقدير
+                </th>
+
+            </tr>
+
+        `;
+
+
+        (stage.subjects || [])
+        .forEach((s,ri)=>{
+
+            html += `
+
+            <tr>
+
+                <td class="subject">
+
+                    <input
+
+                        class="edit edit-subject"
+
+                        value="${escapeHTML(
+                            s.name
+                        )}"
+
+                        data-si="${si}"
+
+                        data-ri="${ri}"
+
+                        data-key="name"
+
+                    >
+
+                </td>
+
+
+                <td class="space"></td>
+
+
+                <td>
+
+                    <input
+
+                        class="edit"
+
+                        value="${escapeHTML(
+                            s.score1 || ""
+                        )}"
+
+                        data-si="${si}"
+
+                        data-ri="${ri}"
+
+                        data-key="score1"
+
+                    >
+
+                </td>
+
+
+                <td>
+
+                    <input
+
+                        class="edit"
+
+                        value="${escapeHTML(
+                            s.max1 || ""
+                        )}"
+
+                        data-si="${si}"
+
+                        data-ri="${ri}"
+
+                        data-key="max1"
+
+                    >
+
+                </td>
+
+
+                <td>
+
+                    <input
+
+                        class="edit"
+
+                        value="${escapeHTML(
+                            s.grade1 || ""
+                        )}"
+
+                        data-si="${si}"
+
+                        data-ri="${ri}"
+
+                        data-key="grade1"
+
+                    >
+
+                </td>
+
+
+                <td>
+
+                    <input
+
+                        class="edit"
+
+                        value="${escapeHTML(
+                            s.score2 || ""
+                        )}"
+
+                        data-si="${si}"
+
+                        data-ri="${ri}"
+
+                        data-key="score2"
+
+                    >
+
+                </td>
+
+
+                <td>
+
+                    <input
+
+                        class="edit"
+
+                        value="${escapeHTML(
+                            s.max2 || ""
+                        )}"
+
+                        data-si="${si}"
+
+                        data-ri="${ri}"
+
+                        data-key="max2"
+
+                    >
+
+                </td>
+
+
+                <td>
+
+                    <input
+
+                        class="edit"
+
+                        value="${escapeHTML(
+                            s.grade2 || ""
+                        )}"
+
+                        data-si="${si}"
+
+                        data-ri="${ri}"
+
+                        data-key="grade2"
+
+                    >
+
+                </td>
+
+            </tr>
+
+            `;
+
+        });
+
+
+        html += `
+
+            <tr>
+
+                <td colspan="8">
+
+                    <button
+
+                        class="adminbar button addsubject"
+
+                        onclick="addSubject(${si})"
+
+                    >
+
+                        + إضافة مادة
+
+                    </button>
+
+
+                    <button
+
+                        class="adminbar button addstage"
+
+                        onclick="insertStage(${si})"
+
+                    >
+
+                        + إضافة مرحلة قبلها
+
+                    </button>
+
+
+                    <button
+
+                        class="adminbar button delete"
+
+                        onclick="deleteStage(${si})"
+
+                    >
+
+                        حذف المرحلة
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+
+        </table>
+
+        `;
+
+    });
+
+
+    document
+        .getElementById("adminResults")
+        .innerHTML = html;
+
+
+
+    /* اسم المرحلة */
+
+    document
+        .querySelectorAll(
+            "[data-stage-name]"
+        )
+        .forEach(input=>{
+
+            input.addEventListener(
+                "change",
+                function(){
+
+                    const index =
+                        Number(
+                            this.dataset.stageName
+                        );
+
+
+                    results[index].name =
+                        this.value;
+
+                }
+            );
+
+        });
+
+
+
+    /* بيانات المادة */
+
+    document
+        .querySelectorAll("[data-key]")
+        .forEach(input=>{
+
+            input.addEventListener(
+                "change",
+                function(){
+
+                    const si =
+                        Number(
+                            this.dataset.si
+                        );
+
+
+                    const ri =
+                        Number(
+                            this.dataset.ri
+                        );
+
+
+                    const key =
+                        this.dataset.key;
+
+
+                    results[si]
+                        .subjects[ri][key] =
+                            this.value;
+
+                }
+            );
+
+        });
+
+}
+
+
+
+/* =====================================================
+   إضافة مادة
+===================================================== */
+
+function addSubject(stageIndex){
+
+    results[stageIndex]
+        .subjects
+        .push({
+
+            name:"مادة جديدة",
+
+            score1:"",
+            max1:"",
+            grade1:"",
+
+            score2:"",
+            max2:"",
+            grade2:""
+
+        });
+
+
+    showAdmin();
+
+}
+
+
+
+/* =====================================================
+   إضافة مرحلة
+===================================================== */
+
+function addStage(){
+
+    const name =
+        prompt(
+            "اكتب اسم المرحلة الجديدة"
+        );
+
+
+    if(!name){
+        return;
+    }
+
+
+    results.push({
+
+        name:name,
+
+        subjects:[]
+
+    });
+
+
+    showAdmin();
+
+}
+
+
+
+/* =====================================================
+   إضافة مرحلة قبل مرحلة
+===================================================== */
+
+function insertStage(index){
+
+    const name =
+        prompt(
+            "اكتب اسم المرحلة الجديدة"
+        );
+
+
+    if(!name){
+        return;
+    }
+
+
+    results.splice(
+        index,
+        0,
+        {
+            name:name,
+            subjects:[]
+        }
+    );
+
+
+    showAdmin();
+
+}
+
+
+
+/* =====================================================
+   حذف مرحلة
+===================================================== */
+
+function deleteStage(index){
+
+    if(
+        confirm(
+            "هل تريد حذف هذه المرحلة؟"
+        )
+    ){
+
+        results.splice(
+            index,
+            1
+        );
+
+
+        showAdmin();
+
+    }
+
+}
+
+
+
+/* =====================================================
+   حفظ
+===================================================== */
+
+function saveData(){
+
+    try{
+
+        localStorage.setItem(
+            "resultsSystemData",
+            JSON.stringify(results)
+        );
+
+
+        alert(
+            "تم حفظ التعديلات بنجاح"
+        );
+
+    }
+
+    catch(e){
+
+        alert(
+            "حدث خطأ أثناء الحفظ"
+        );
+
+    }
+
+}
+
+
+
+/* =====================================================
+   تسجيل الخروج
+===================================================== */
+
+function logout(){
+
+    location.reload();
+
+}
+
+
+
+/* =====================================================
+   الأزرار
+===================================================== */
+
+document
+    .getElementById("loginButton")
+    .addEventListener(
+        "click",
+        login
+    );
+
+
+document
+    .getElementById("password")
+    .addEventListener(
+        "keydown",
+        function(e){
+
+            if(e.key === "Enter"){
+
+                login();
+
+            }
+
+        }
+    );
+
+
+document
+    .getElementById("username")
+    .addEventListener(
+        "keydown",
+        function(e){
+
+            if(e.key === "Enter"){
+
+                login();
+
+            }
+
+        }
+    );
+
+
+document
+    .getElementById("studentLogout")
+    .addEventListener(
+        "click",
+        logout
+    );
+
+
+document
+    .getElementById("adminLogout")
+    .addEventListener(
+        "click",
+        logout
+    );
+
+
+document
+    .getElementById("addStageButton")
+    .addEventListener(
+        "click",
+        addStage
+    );
+
+
+document
+    .getElementById("saveButton")
+    .addEventListener(
+        "click",
+        saveData
+    );
+
+</script>
+
+</body>
+
+</html>
