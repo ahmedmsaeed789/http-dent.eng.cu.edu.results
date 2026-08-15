@@ -85,10 +85,6 @@ body{
     border-radius:4px;
 }
 
-.login-box button:active{
-    transform:scale(.99);
-}
-
 #error{
     color:#d00000;
     margin-top:10px;
@@ -110,10 +106,10 @@ body{
 }
 
 .topbar{
-    height:44px;
+    height:42px;
     background:linear-gradient(#596772,#252d33);
     color:white;
-    font-size:20px;
+    font-size:18px;
     font-weight:bold;
     padding:9px 10px;
     border-bottom:1px solid #222;
@@ -122,10 +118,10 @@ body{
 .student-info{
     background:#dddddd;
     border:1px solid #aaaaaa;
-    padding:10px;
+    padding:8px 10px;
     font-weight:bold;
-    font-size:15px;
-    line-height:1.8;
+    font-size:14px;
+    line-height:1.7;
 }
 
 
@@ -142,12 +138,12 @@ body{
 
 
 /* =====================================================
-   TABLE
+   TABLE - أصغر
 ===================================================== */
 
 .result-table{
     width:100%;
-    min-width:980px;
+    min-width:850px;
     border-collapse:collapse;
     table-layout:fixed;
     direction:rtl;
@@ -158,10 +154,10 @@ body{
 .result-table td,
 .result-table th{
     border:1px solid #bfb7b5;
-    height:34px;
-    padding:5px;
+    height:29px;
+    padding:3px;
     text-align:center;
-    font-size:13px;
+    font-size:11px;
     vertical-align:middle;
 }
 
@@ -171,18 +167,18 @@ body{
 }
 
 .subject{
-    width:29%;
+    width:27%;
     text-align:right!important;
-    padding-right:14px!important;
+    padding-right:8px!important;
 }
 
 .space{
-    width:13%;
+    width:8%;
     background:#eeeeee;
 }
 
 .score{
-    width:10%;
+    width:11%;
 }
 
 .max{
@@ -190,15 +186,15 @@ body{
 }
 
 .grade{
-    width:9.5%;
+    width:8.5%;
 }
 
 .year{
     background:#ff6659!important;
     color:#111;
     font-weight:bold;
-    font-size:15px!important;
-    height:35px!important;
+    font-size:13px!important;
+    height:32px!important;
 }
 
 .total{
@@ -207,13 +203,13 @@ body{
 }
 
 .total td{
-    height:36px;
+    height:31px;
 }
 
 .general-total{
     background:#b7aaa7!important;
     font-weight:bold;
-    font-size:14px!important;
+    font-size:13px!important;
 }
 
 .weak{
@@ -226,7 +222,7 @@ body{
 ===================================================== */
 
 .overall-summary{
-    min-width:980px;
+    min-width:850px;
     border:1px solid #aaa;
     border-top:0;
     background:#d4cecc;
@@ -239,7 +235,7 @@ body{
 .overall-summary-item{
     flex:1;
     text-align:center;
-    padding:12px;
+    padding:9px;
     border-left:1px solid #aaa;
 }
 
@@ -249,7 +245,7 @@ body{
 
 .overall-summary-title{
     display:block;
-    margin-bottom:5px;
+    margin-bottom:4px;
 }
 
 
@@ -260,7 +256,7 @@ body{
 .adminbar{
     background:#dddddd;
     border:1px solid #aaaaaa;
-    padding:10px;
+    padding:8px;
     position:sticky;
     top:0;
     z-index:20;
@@ -268,8 +264,8 @@ body{
 
 .adminbar button{
     border:0;
-    padding:9px 14px;
-    margin:3px;
+    padding:8px 12px;
+    margin:2px;
     color:white;
     background:#555;
     cursor:pointer;
@@ -299,12 +295,12 @@ body{
 
 .edit{
     width:95%;
-    padding:5px;
+    padding:3px;
     border:1px solid #888;
     background:white;
     text-align:center;
     font-family:Tahoma,Arial;
-    font-size:12px;
+    font-size:10px;
     direction:rtl;
 }
 
@@ -315,25 +311,25 @@ body{
 .admin-note{
     background:#fff8dc;
     border:1px solid #ddd;
-    padding:10px;
-    margin:10px;
+    padding:8px;
+    margin:8px;
     text-align:center;
-    font-size:13px;
-    line-height:1.7;
+    font-size:12px;
+    line-height:1.6;
 }
 
 .footer{
     text-align:center;
     background:#dddddd;
     border:1px solid #aaaaaa;
-    padding:12px;
+    padding:10px;
     font-weight:bold;
-    font-size:15px;
+    font-size:13px;
 }
 
 .logout{
-    margin:15px;
-    padding:9px 20px;
+    margin:12px;
+    padding:8px 18px;
     background:#555;
     color:white;
     border:0;
@@ -350,50 +346,45 @@ body{
 @media(max-width:700px){
 
     .topbar{
-        height:42px;
-        font-size:15px;
-        padding:11px 8px;
+        height:40px;
+        font-size:14px;
+        padding:10px 7px;
     }
 
     .student-info{
-        font-size:12px;
-        padding:8px;
-        line-height:1.9;
+        font-size:11px;
+        padding:7px;
+        line-height:1.8;
     }
 
-    /*
-       نخلي الجدول بحجم ثابت حتى يبقى قريب
-       من أبعاد النظام الأصلي.
-    */
-
     .result-table{
-        min-width:980px;
+        min-width:850px;
     }
 
     .result-table td,
     .result-table th{
-        font-size:10px;
-        height:31px;
-        padding:3px;
+        font-size:9px;
+        height:27px;
+        padding:2px;
     }
 
     .year{
-        font-size:12px!important;
-        height:34px!important;
+        font-size:11px!important;
+        height:31px!important;
     }
 
     .subject{
-        padding-right:9px!important;
+        padding-right:6px!important;
     }
 
     .edit{
-        font-size:9px;
-        padding:3px;
+        font-size:8px;
+        padding:2px;
     }
 
     .overall-summary{
-        min-width:980px;
-        font-size:11px;
+        min-width:850px;
+        font-size:10px;
     }
 
 }
@@ -571,10 +562,6 @@ body{
 
 let results = [
 
-    /* =================================================
-       1
-    ================================================= */
-
     {
         name:
         "الفرقة الأولى 2020/2021 - طب وجراحة الفم والأسنان",
@@ -582,10 +569,6 @@ let results = [
         subjects:[]
     },
 
-
-    /* =================================================
-       2
-    ================================================= */
 
     {
         name:
@@ -655,14 +638,9 @@ let results = [
 
         ],
 
-        total:"482.25",
-        totalGrade:"ل"
+        total:"482.25"
     },
 
-
-    /* =================================================
-       3
-    ================================================= */
 
     {
         name:
@@ -742,14 +720,9 @@ let results = [
 
         ],
 
-        total:"598.5",
-        totalGrade:"ج"
+        total:"598.5"
     },
 
-
-    /* =================================================
-       4
-    ================================================= */
 
     {
         name:
@@ -839,14 +812,9 @@ let results = [
 
         ],
 
-        total:"674.33",
-        totalGrade:"مواد"
+        total:"674.33"
     },
 
-
-    /* =================================================
-       5
-    ================================================= */
 
     {
         name:
@@ -936,14 +904,9 @@ let results = [
 
         ],
 
-        total:"709.1",
-        totalGrade:"ج"
+        total:"709.1"
     },
 
-
-    /* =================================================
-       6
-    ================================================= */
 
     {
         name:
@@ -978,8 +941,7 @@ let results = [
                 grade1:"جيد",
                 score2:"108.5",
                 max2:"150",
-                grade2:"جيد",
-                highlight:true
+                grade2:"جيد"
             },
 
             {
@@ -1044,14 +1006,9 @@ let results = [
 
         ],
 
-        total:"712",
-        totalGrade:"ل"
+        total:"712"
     },
 
-
-    /* =================================================
-       7
-    ================================================= */
 
     {
         name:
@@ -1143,10 +1100,6 @@ let results = [
     },
 
 
-    /* =================================================
-       8
-    ================================================= */
-
     {
         name:
         "الفرقة الخامسة 2025/2026 - طب وجراحة الفم والأسنان دور سبتمبر",
@@ -1164,86 +1117,150 @@ let results = [
 
 function calculateStage(stage){
 
-    /*
-       إذا كان عند المرحلة مجموع محفوظ،
-       نحافظ عليه كما هو.
-    */
-
     if(
         stage.total !== undefined &&
         stage.total !== null &&
         String(stage.total).trim() !== ""
     ){
+
         return String(stage.total);
+
     }
 
 
     let total = 0;
+
 
     (stage.subjects || []).forEach(subject=>{
 
         const score =
             parseFloat(subject.score1);
 
+
         if(!isNaN(score)){
+
             total += score;
+
         }
 
     });
 
 
     if(total === 0){
+
         return "";
+
     }
 
 
     return Number.isInteger(total)
         ? String(total)
-        : total.toFixed(2).replace(/\.00$/,"");
+        : total
+            .toFixed(2)
+            .replace(/\.00$/,"");
 
 }
 
 
 
 /* =====================================================
-   حساب التقدير الكلي
+   حساب التقدير الكلي للمرحلة
 ===================================================== */
 
 function calculateGrade(stage){
 
-    if(
-        stage.totalGrade !== undefined &&
-        stage.totalGrade !== null &&
-        String(stage.totalGrade).trim() !== ""
-    ){
-        return String(stage.totalGrade);
+    /*
+       نحسب عدد المواد التي تقديرها ضعيف
+    */
+
+    let weakCount = 0;
+
+
+    (stage.subjects || []).forEach(subject=>{
+
+        const weak1 =
+            String(subject.grade1 || "").trim() === "ضعيف";
+
+
+        const weak2 =
+            String(subject.grade2 || "").trim() === "ضعيف";
+
+
+        /*
+           المادة تنحسب مرة واحدة فقط
+           حتى لو grade1 و grade2 الاثنين ضعيف
+        */
+
+        if(weak1 || weak2){
+
+            weakCount++;
+
+        }
+
+    });
+
+
+    /*
+       أكثر من مادتين ضعيف = باق
+    */
+
+    if(weakCount > 2){
+
+        return "باق";
+
     }
 
 
+    /*
+       مادتين ضعيف بالضبط = مواد
+    */
+
+    if(weakCount === 2){
+
+        return "مواد";
+
+    }
+
+
+    /*
+       إذا ماكو مادتين ضعيف
+       نحسب التقدير الطبيعي
+    */
+
     let total = 0;
     let max = 0;
+
 
     (stage.subjects || []).forEach(subject=>{
 
         const score =
             parseFloat(subject.score1);
 
+
         const maximum =
             parseFloat(subject.max1);
 
+
         if(!isNaN(score)){
+
             total += score;
+
         }
 
+
         if(!isNaN(maximum)){
+
             max += maximum;
+
         }
 
     });
 
 
     if(max <= 0){
+
         return "";
+
     }
 
 
@@ -1252,20 +1269,32 @@ function calculateGrade(stage){
 
 
     if(percentage >= 85){
+
         return "ممتاز";
+
     }
+
 
     if(percentage >= 75){
+
         return "جيد جدا";
+
     }
+
 
     if(percentage >= 65){
+
         return "جيد";
+
     }
 
+
     if(percentage >= 50){
+
         return "مقبول";
+
     }
+
 
     return "ضعيف";
 
@@ -1334,9 +1363,11 @@ function showPage(id){
         .getElementById("loginPage")
         .classList.add("hidden");
 
+
     document
         .getElementById("studentPage")
         .classList.add("hidden");
+
 
     document
         .getElementById("adminPage")
@@ -1379,10 +1410,6 @@ function login(){
     error.textContent = "";
 
 
-    /* =================================================
-       حساب الطالب
-    ================================================= */
-
     if(
         username === "42200026" &&
         password === "25454613"
@@ -1396,10 +1423,6 @@ function login(){
 
     }
 
-
-    /* =================================================
-       حساب المدير
-    ================================================= */
 
     if(
         username === "admin" &&
@@ -1433,8 +1456,6 @@ function showStudent(){
 
     let overallTotal = 0;
 
-    let stagesWithTotals = 0;
-
 
     results.forEach(stage=>{
 
@@ -1453,8 +1474,6 @@ function showStudent(){
         if(!isNaN(numericTotal)){
 
             overallTotal += numericTotal;
-
-            stagesWithTotals++;
 
         }
 
@@ -1605,10 +1624,6 @@ function showStudent(){
             });
 
 
-            /*
-               المجموع والتقدير الكلي للمرحلة
-            */
-
             html += `
 
             <tr class="total">
@@ -1623,9 +1638,7 @@ function showStudent(){
                 </td>
 
 
-                <td
-                    colspan="2"
-                >
+                <td colspan="2">
 
                     ${escapeHTML(stageTotal)}
 
@@ -1639,9 +1652,7 @@ function showStudent(){
                 </td>
 
 
-                <td
-                    colspan="3"
-                >
+                <td colspan="3">
 
                     ${escapeHTML(stageGrade)}
 
@@ -1679,13 +1690,10 @@ function showStudent(){
     });
 
 
-    /*
-       المجموع العام لكل المراحل
-    */
-
     let formattedOverall = "";
 
-    if(stagesWithTotals){
+
+    if(overallTotal !== 0){
 
         formattedOverall =
             Number.isInteger(overallTotal)
@@ -1696,6 +1704,11 @@ function showStudent(){
 
     }
 
+
+    /*
+       فقط المجموع العام
+       بدون عدد المراحل
+    */
 
     html += `
 
@@ -1709,19 +1722,6 @@ function showStudent(){
 
                 <span>
                     ${escapeHTML(formattedOverall)}
-                </span>
-
-            </div>
-
-
-            <div class="overall-summary-item">
-
-                <span class="overall-summary-title">
-                    عدد المراحل المحتسبة
-                </span>
-
-                <span>
-                    ${stagesWithTotals}
                 </span>
 
             </div>
@@ -2036,10 +2036,8 @@ function showAdmin(){
                 <td colspan="8">
 
                     <button
-
                         class="addsubject"
                         onclick="addSubject(${si})"
-
                     >
 
                         + إضافة مادة
@@ -2048,10 +2046,8 @@ function showAdmin(){
 
 
                     <button
-
                         class="addstage"
                         onclick="insertStage(${si})"
-
                     >
 
                         + إضافة مرحلة قبلها
@@ -2060,10 +2056,8 @@ function showAdmin(){
 
 
                     <button
-
                         class="delete"
                         onclick="deleteStage(${si})"
-
                     >
 
                         حذف المرحلة
@@ -2087,10 +2081,6 @@ function showAdmin(){
         .innerHTML = html;
 
 
-
-    /* =================================================
-       اسم المرحلة
-    ================================================= */
 
     document
         .querySelectorAll(
@@ -2117,10 +2107,6 @@ function showAdmin(){
         });
 
 
-
-    /* =================================================
-       بيانات المادة
-    ================================================= */
 
     document
         .querySelectorAll("[data-key]")
@@ -2288,38 +2274,13 @@ function saveData(){
     try{
 
         /*
-           قبل الحفظ نضمن وجود المجموع
-           والتقدير الكلي للمرحلة.
+           نحذف التقدير القديم المحفوظ
+           حتى يتم حسابه حسب عدد المواد الضعيفة
         */
 
         results.forEach(stage=>{
 
-            if(
-                !stage.total ||
-                String(stage.total).trim() === ""
-            ){
-
-                stage.total =
-                    calculateStage({
-                        ...stage,
-                        total:""
-                    });
-
-            }
-
-
-            if(
-                !stage.totalGrade ||
-                String(stage.totalGrade).trim() === ""
-            ){
-
-                stage.totalGrade =
-                    calculateGrade({
-                        ...stage,
-                        totalGrade:""
-                    });
-
-            }
+            delete stage.totalGrade;
 
         });
 
